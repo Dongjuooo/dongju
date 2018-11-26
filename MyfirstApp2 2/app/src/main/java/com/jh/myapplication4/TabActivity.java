@@ -3,6 +3,7 @@ package com.jh.myapplication4;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,14 +15,18 @@ import android.widget.Toast;
 
 public class TabActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String EXTRA_MESSAGE = "com.example.myapplication4.MESSAGE";
-
     private DrawerLayout drawer;
-    public AlarmActivity alarmActivity;
 
 
     public void sendMessage() {
         Intent intent = new Intent(this, AlarmActivity.class);
         intent.putExtra(EXTRA_MESSAGE, "");
+        startActivity(intent);
+    }
+
+    public void sendMessage2() {
+        Intent intent = new Intent(this, ChatActivity.class);
+       // intent.putExtra(EXTRA_MESSAGE, "");
         startActivity(intent);
     }
 
@@ -47,7 +52,7 @@ public class TabActivity extends AppCompatActivity implements NavigationView.OnN
         /*
         // 이건 뭘까.. 앱 처음 나오는 화면을 메세지로 설정
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FriendsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_message);
         }
         //여기까지
@@ -63,21 +68,22 @@ public class TabActivity extends AppCompatActivity implements NavigationView.OnN
                         new ProfileFragment()).commit();
                 break;
 
-            case R.id.nav_message:
+            case R.id.nav_friends:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MessageFragment()).commit();
+                        new FriendsFragment()).commit();
+
                 break;
 
             case R.id.nav_chat:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ChatFragment()).commit();
+                sendMessage2();
                 break;
 
             case R.id.nav_alarm:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AlarmFragment()).commit();
                 sendMessage();
-                //alarmActivity = new AlarmActivity();
                 break;
 
 

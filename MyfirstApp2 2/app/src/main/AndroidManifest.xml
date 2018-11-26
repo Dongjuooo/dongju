@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AlarmActivity" />
-        <activity android:name=".TabActivity"></activity>
+        <activity android:name=".TabActivity" />
+		 <activity android:name=".ChatActivity" />
+        <activity android:name=".MyAdapter"></activity>
     </application>
 
 </manifest>
